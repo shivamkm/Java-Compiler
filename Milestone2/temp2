@@ -1,0 +1,5869 @@
+
+TypeName : IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TypeName_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| temporary0 IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TypeName_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+Type : PrimitiveType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Type_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ReferenceType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Type_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+PrimitiveType : NumericType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PrimitiveType_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| BOOLEAN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PrimitiveType_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+NumericType : BYTE
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "NumericType_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| SHORT
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "NumericType_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| INT
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "NumericType_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LONG
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "NumericType_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| CHAR
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "NumericType_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| FLOAT
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "NumericType_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| DOUBLE
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "NumericType_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ReferenceType : ClassType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ReferenceType_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ArrayType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ReferenceType_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+temporary0 : temporary0 IDENTIFIER DOT
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "temporary0_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| IDENTIFIER DOT
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "temporary0_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ClassType : IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassType_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| temporary0 IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassType_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+PostFixType : IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PostFixType_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| temporary0 IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PostFixType_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ArrayType : PrimitiveType Dims
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ArrayType_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| ClassType Dims
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ArrayType_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+Dims : LEFT_SQUARE RIGHT_SQUARE
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Dims_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| Dims LEFT_SQUARE RIGHT_SQUARE
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Dims_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+TypeParameter : IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TypeParameter_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| IDENTIFIER TypeBound
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TypeParameter_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+TypeBound : EXTENDS IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TypeBound_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| EXTENDS ClassType AdditionalBound
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TypeBound_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+AdditionalBound : LAND ClassType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AdditionalBound_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| AdditionalBound LAND ClassType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AdditionalBound_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+CompilationUnit : PackageDeclaration ImportDeclaration TypeDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "CompilationUnit_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+}
+| PackageDeclaration ImportDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "CompilationUnit_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| PackageDeclaration TypeDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "CompilationUnit_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| PackageDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "CompilationUnit_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ImportDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "CompilationUnit_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| TypeDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "CompilationUnit_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ImportDeclaration TypeDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "CompilationUnit_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| %empty
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "CompilationUnit_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << "\"\"" << endl;
+}
+
+
+PackageDeclaration : PACKAGE TypeName SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PackageDeclaration_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ImportDeclaration : IMPORT TypeName SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ImportDeclaration_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| IMPORT temporary0 MUL SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ImportDeclaration_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| IMPORT STATIC temporary0 IDENTIFIER SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ImportDeclaration_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| IMPORT STATIC temporary0 MUL SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ImportDeclaration_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| ImportDeclaration IMPORT TypeName SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ImportDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| ImportDeclaration IMPORT temporary0 MUL SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ImportDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| ImportDeclaration IMPORT STATIC temporary0 IDENTIFIER SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ImportDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| ImportDeclaration IMPORT STATIC temporary0 MUL SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ImportDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+TypeDeclaration : ClassDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TypeDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| InterfaceDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TypeDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TypeDeclaration_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| TypeDeclaration ClassDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TypeDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| TypeDeclaration InterfaceDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TypeDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| TypeDeclaration SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TypeDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ClassDeclaration : NormalClassDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| EnumDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+NormalClassDeclaration : ClassModifier IDENTIFIER TypeParameters SuperClass Superinterfaces ClassBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "NormalClassDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+  cout << $$ << " -> " << $5 << endl;
+  cout << $$ << " -> " << $6 << endl;
+}
+| ClassModifier IDENTIFIER TypeParameters SuperClass ClassBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "NormalClassDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+  cout << $$ << " -> " << $5 << endl;
+}
+| ClassModifier IDENTIFIER TypeParameters Superinterfaces ClassBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "NormalClassDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+  cout << $$ << " -> " << $5 << endl;
+}
+| ClassModifier IDENTIFIER SuperClass Superinterfaces ClassBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "NormalClassDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+  cout << $$ << " -> " << $5 << endl;
+}
+| ClassModifier IDENTIFIER TypeParameters ClassBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "NormalClassDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+}
+| ClassModifier IDENTIFIER SuperClass ClassBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "NormalClassDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+}
+| ClassModifier IDENTIFIER Superinterfaces ClassBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "NormalClassDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+}
+| ClassModifier IDENTIFIER ClassBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "NormalClassDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+ClassModifier : PUBLIC ClassModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| PROTECTED ClassModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| PRIVATE ClassModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| ABSTRACT ClassModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| STATIC ClassModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| FINAL ClassModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| STRICTFP ClassModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| CLASS
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+TypeParameters : LT TypeParameterList GT
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TypeParameters_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+TypeParameterList : TypeParameterList COMMA TypeParameter
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TypeParameterList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| TypeParameter
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TypeParameterList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+SuperClass : EXTENDS ClassType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "SuperClass_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+Superinterfaces : IMPLEMENTS InterfaceTypeList
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Superinterfaces_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+InterfaceTypeList : InterfaceTypeList COMMA ClassType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceTypeList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| ClassType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceTypeList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+ClassBody : LEFT_CURLY ClassBodyDeclaration RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ClassBodyDeclaration : ClassMemberDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassBodyDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| Block
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassBodyDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| STATIC Block
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassBodyDeclaration_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| ConstructorDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassBodyDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ClassBodyDeclaration ClassMemberDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassBodyDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| ClassBodyDeclaration Block
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassBodyDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| ClassBodyDeclaration STATIC Block
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassBodyDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| ClassBodyDeclaration ConstructorDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassBodyDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+ClassMemberDeclaration : FieldDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassMemberDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| MethodDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassMemberDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ClassDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassMemberDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| InterfaceDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassMemberDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassMemberDeclaration_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+FieldDeclaration : FieldModifier SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FieldDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+FieldModifier : PUBLIC FieldModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FieldModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| PROTECTED FieldModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FieldModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| PRIVATE FieldModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FieldModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| STATIC FieldModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FieldModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| FINAL FieldModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FieldModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| TRANSIENT FieldModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FieldModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| VOLATILE FieldModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FieldModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| Type VariableDeclaratorList
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FieldModifier_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+VariableDeclaratorList : VariableDeclaratorList COMMA VariableDeclarator
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "VariableDeclaratorList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| VariableDeclarator
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "VariableDeclaratorList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+VariableDeclarator : VariableDeclaratorId
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "VariableDeclarator_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| VariableDeclaratorId ASSIGN VariableInitializer
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "VariableDeclarator_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+VariableDeclaratorId : IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "VariableDeclaratorId_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| IDENTIFIER Dims
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "VariableDeclaratorId_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+VariableInitializer : Expression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "VariableInitializer_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ArrayInitializer
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "VariableInitializer_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+MethodDeclaration : InterfaceMethodDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| FINAL InterfaceMethodDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodDeclaration_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+MethodHeader : Type MethodDeclarator
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodHeader_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| Type MethodDeclarator THROWS
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodHeader_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| TypeParameters Type MethodDeclarator
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodHeader_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+}
+| TypeParameters Type MethodDeclarator THROWS
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodHeader_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| VOID MethodDeclarator
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodHeader_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| VOID MethodDeclarator THROWS
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodHeader_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| TypeParameters VOID MethodDeclarator
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodHeader_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| TypeParameters VOID MethodDeclarator THROWS
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodHeader_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+MethodDeclarator : IDENTIFIER LEFT_PAREN FormalParameterList RIGHT_PAREN Dims
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodDeclarator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+}
+| IDENTIFIER LEFT_PAREN RIGHT_PAREN Dims
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodDeclarator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+}
+| IDENTIFIER LEFT_PAREN FormalParameterList RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodDeclarator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| IDENTIFIER LEFT_PAREN RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodDeclarator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+FormalParameterList : ReceiverParameter
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FormalParameterList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| FormalParameters COMMA LastFormalParameter
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FormalParameterList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| LastFormalParameter
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FormalParameterList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+FormalParameters : FormalParameters COMMA FormalParameter
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FormalParameters_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| FormalParameter
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FormalParameters_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ReceiverParameter
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FormalParameters_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+FormalParameter : FINAL Type VariableDeclaratorId
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FormalParameter_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+}
+| Type VariableDeclaratorId
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FormalParameter_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+LastFormalParameter : FINAL Type TRIPLE_DOT VariableDeclaratorId
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LastFormalParameter_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+}
+| Type TRIPLE_DOT VariableDeclaratorId
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LastFormalParameter_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| FormalParameter
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LastFormalParameter_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+ReceiverParameter : Type THIS
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ReceiverParameter_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| Type IDENTIFIER DOT THIS
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ReceiverParameter_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+Throws : THROWS ExceptionTypeList
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Throws_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+ExceptionTypeList : ExceptionTypeList COMMA ClassType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ExceptionTypeList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| ClassType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ExceptionTypeList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+MethodBody : Block
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodBody_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ConstructorDeclaration : ConstructorModifier Throws ConstructorBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstructorDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+}
+| ConstructorModifier ConstructorBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstructorDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+ConstructorModifier : PUBLIC ConstructorModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstructorModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| PROTECTED ConstructorModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstructorModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| PRIVATE ConstructorModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstructorModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| ConstructorDeclarator
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstructorModifier_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+ConstructorDeclarator : TypeParameters IDENTIFIER LEFT_PAREN FormalParameterList RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstructorDeclarator_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| TypeParameters IDENTIFIER LEFT_PAREN RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstructorDeclarator_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| IDENTIFIER LEFT_PAREN FormalParameterList RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstructorDeclarator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| IDENTIFIER LEFT_PAREN RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstructorDeclarator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ConstructorBody : LEFT_CURLY ExplicitConstructorInvocation BlockStatements RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstructorBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY BlockStatements RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstructorBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY ExplicitConstructorInvocation RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstructorBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstructorBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ExplicitConstructorInvocation : THIS LEFT_PAREN ArgumentList RIGHT_PAREN SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ExplicitConstructorInvocation_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| THIS LEFT_PAREN RIGHT_PAREN SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ExplicitConstructorInvocation_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| SUPER LEFT_PAREN ArgumentList RIGHT_PAREN SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ExplicitConstructorInvocation_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| SUPER LEFT_PAREN RIGHT_PAREN SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ExplicitConstructorInvocation_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| temporary0 SUPER LEFT_PAREN ArgumentList RIGHT_PAREN SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ExplicitConstructorInvocation_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| temporary0 SUPER LEFT_PAREN RIGHT_PAREN SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ExplicitConstructorInvocation_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| Primary DOT SUPER LEFT_PAREN ArgumentList RIGHT_PAREN SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ExplicitConstructorInvocation_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $7);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| Primary DOT SUPER LEFT_PAREN RIGHT_PAREN SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ExplicitConstructorInvocation_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ClassModifier_enum : PUBLIC ClassModifier_enum
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassModifier_enum_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| PROTECTED ClassModifier_enum
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassModifier_enum_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| PRIVATE ClassModifier_enum
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassModifier_enum_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| ABSTRACT ClassModifier_enum
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassModifier_enum_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| STATIC ClassModifier_enum
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassModifier_enum_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| FINAL ClassModifier_enum
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassModifier_enum_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| STRICTFP ClassModifier_enum
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassModifier_enum_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| ENUM
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassModifier_enum_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+EnumDeclaration : ClassModifier_enum IDENTIFIER Superinterfaces EnumBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+}
+| ClassModifier_enum IDENTIFIER EnumBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+EnumBody : LEFT_CURLY EnumConstantList COMMA EnumBodyDeclaration RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY COMMA EnumBodyDeclaration RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY EnumConstantList EnumBodyDeclaration RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY EnumConstantList COMMA RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY EnumConstantList RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY COMMA RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY EnumBodyDeclaration RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+EnumConstantList : EnumConstantList COMMA EnumConstant
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumConstantList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| EnumConstant
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumConstantList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+EnumConstant : IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumConstant_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| IDENTIFIER ClassBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumConstant_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| IDENTIFIER LEFT_PAREN RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumConstant_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| IDENTIFIER LEFT_PAREN ArgumentList RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumConstant_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| IDENTIFIER LEFT_PAREN RIGHT_PAREN ClassBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumConstant_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+}
+| IDENTIFIER LEFT_PAREN ArgumentList RIGHT_PAREN ClassBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumConstant_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+}
+
+
+EnumBodyDeclaration : SEMI_COLON ClassBodyDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumBodyDeclaration_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnumBodyDeclaration_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+InterfaceDeclaration : InterfaceModifier IDENTIFIER TypeParameters ExtendsInterfaces InterfaceBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+  cout << $$ << " -> " << $5 << endl;
+}
+| InterfaceModifier IDENTIFIER ExtendsInterfaces InterfaceBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+}
+| InterfaceModifier IDENTIFIER TypeParameters InterfaceBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+}
+| InterfaceModifier IDENTIFIER InterfaceBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+InterfaceModifier : PUBLIC InterfaceModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| PROTECTED InterfaceModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| PRIVATE InterfaceModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| ABSTRACT InterfaceModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| STATIC InterfaceModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| STRICTFP InterfaceModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| INTERFACE
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ExtendsInterfaces : EXTENDS InterfaceTypeList
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ExtendsInterfaces_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+InterfaceBody : LEFT_CURLY InterfaceMemberDeclaration RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceBody_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+InterfaceMemberDeclaration : ConstantDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMemberDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| InterfaceMethodDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMemberDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ClassDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMemberDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| InterfaceDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMemberDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMemberDeclaration_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| InterfaceMemberDeclaration ConstantDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMemberDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| InterfaceMemberDeclaration InterfaceMethodDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMemberDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| InterfaceMemberDeclaration ClassDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMemberDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| InterfaceMemberDeclaration InterfaceDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMemberDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| InterfaceMemberDeclaration SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMemberDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ConstantDeclaration : ConstantModifier SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstantDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ConstantModifier : PUBLIC ConstantModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstantModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| STATIC ConstantModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstantModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| FINAL ConstantModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstantModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| Type VariableDeclaratorList
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstantModifier_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+InterfaceMethodModifier : PUBLIC InterfaceMethodModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMethodModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| PROTECTED InterfaceMethodModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMethodModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| PRIVATE InterfaceMethodModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMethodModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| ABSTRACT InterfaceMethodModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMethodModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| STATIC InterfaceMethodModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMethodModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| STRICTFP InterfaceMethodModifier
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMethodModifier_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| MethodHeader
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMethodModifier_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+InterfaceMethodDeclaration : InterfaceMethodModifier MethodBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InterfaceMethodDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+ArrayInitializer : LEFT_CURLY VariableInitializerList COMMA RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ArrayInitializer_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY COMMA RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ArrayInitializer_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY VariableInitializerList RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ArrayInitializer_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ArrayInitializer_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+VariableInitializerList : VariableInitializerList COMMA VariableInitializer
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "VariableInitializerList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| VariableInitializer
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "VariableInitializerList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+Block : LEFT_CURLY BlockStatements RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Block_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Block_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+BlockStatements : BlockStatements BlockStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BlockStatements_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| BlockStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BlockStatements_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+BlockStatement : LocalVariableDeclarationStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BlockStatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ClassDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BlockStatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| Statement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BlockStatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+LocalVariableDeclarationStatement : LocalVariableDeclaration SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LocalVariableDeclarationStatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+LocalVariableDeclaration : FINAL Type VariableDeclaratorList
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LocalVariableDeclaration_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+}
+| Type VariableDeclaratorList
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LocalVariableDeclaration_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+Statement : StatementWithoutTrailingSubstatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Statement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| LabeledStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Statement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| IfThenStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Statement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| IfThenElseStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Statement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| WhileStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Statement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ForStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Statement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+StatementNoShortIf : StatementWithoutTrailingSubstatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementNoShortIf_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| LabeledStatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementNoShortIf_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| IfThenElseStatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementNoShortIf_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| WhileStatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementNoShortIf_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ForStatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementNoShortIf_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+StatementWithoutTrailingSubstatement : Block
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementWithoutTrailingSubstatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementWithoutTrailingSubstatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| ExpressionStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementWithoutTrailingSubstatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| AssertStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementWithoutTrailingSubstatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| SwitchStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementWithoutTrailingSubstatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| DoStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementWithoutTrailingSubstatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| BreakStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementWithoutTrailingSubstatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ContinueStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementWithoutTrailingSubstatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ReturnStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementWithoutTrailingSubstatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| SynchronizedStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementWithoutTrailingSubstatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ThrowStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementWithoutTrailingSubstatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| TryStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementWithoutTrailingSubstatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+LabeledStatement : IDENTIFIER COLON Statement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LabeledStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+LabeledStatementNoShortIf : IDENTIFIER COLON StatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LabeledStatementNoShortIf_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+ExpressionStatement : StatementExpression SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ExpressionStatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+
+StatementExpression : Assignment
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| PreIncrementExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| PreDecrementExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| PostIncrementExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| PostDecrementExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| MethodInvocation
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ClassInstanceCreationExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+IfThenStatement : IF LEFT_PAREN Expression RIGHT_PAREN Statement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "IfThenStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+}
+
+
+IfThenElseStatement : IF LEFT_PAREN Expression RIGHT_PAREN StatementNoShortIf ELSE Statement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "IfThenElseStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $7 << endl;
+}
+
+
+IfThenElseStatementNoShortIf : IF LEFT_PAREN Expression RIGHT_PAREN StatementNoShortIf ELSE StatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "IfThenElseStatementNoShortIf_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $7 << endl;
+}
+
+
+AssertStatement : ASSERT Expression SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AssertStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| ASSERT Expression COLON Expression SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AssertStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+SwitchStatement : SWITCH LEFT_PAREN Expression RIGHT_PAREN SwitchBlock
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "SwitchStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+}
+
+
+SwitchBlock : LEFT_CURLY SwitchBlockStatementGroup SwitchLabels RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "SwitchBlock_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY SwitchLabels RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "SwitchBlock_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY SwitchBlockStatementGroup RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "SwitchBlock_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_CURLY RIGHT_CURLY
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "SwitchBlock_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+SwitchBlockStatementGroup : SwitchBlockStatementGroup SwitchLabels BlockStatements
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "SwitchBlockStatementGroup_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+}
+| SwitchLabels BlockStatements
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "SwitchBlockStatementGroup_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+SwitchLabels : SwitchLabels SwitchLabel
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "SwitchLabels_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| SwitchLabel
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "SwitchLabels_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+SwitchLabel : CASE ConstantExpression COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "SwitchLabel_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| DEFAULT COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "SwitchLabel_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+WhileStatement : WHILE LEFT_PAREN Expression RIGHT_PAREN Statement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "WhileStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+}
+
+
+WhileStatementNoShortIf : WHILE LEFT_PAREN Expression RIGHT_PAREN StatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "WhileStatementNoShortIf_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+}
+
+
+DoStatement : DO Statement WHILE LEFT_PAREN Expression RIGHT_PAREN SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "DoStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $7);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ForStatement : BasicForStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ForStatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| EnhancedForStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ForStatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+ForStatementNoShortIf : BasicForStatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ForStatementNoShortIf_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| EnhancedForStatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ForStatementNoShortIf_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+BasicForStatement : FOR LEFT_PAREN ForInit SEMI_COLON Expression SEMI_COLON ForUpdate RIGHT_PAREN Statement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BasicForStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $7 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $8);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $9 << endl;
+}
+| FOR LEFT_PAREN SEMI_COLON Expression SEMI_COLON ForUpdate RIGHT_PAREN Statement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BasicForStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $6 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $7);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $8 << endl;
+}
+| FOR LEFT_PAREN ForInit SEMI_COLON SEMI_COLON ForUpdate RIGHT_PAREN Statement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BasicForStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $6 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $7);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $8 << endl;
+}
+| FOR LEFT_PAREN ForInit SEMI_COLON Expression SEMI_COLON RIGHT_PAREN Statement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BasicForStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $7);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $8 << endl;
+}
+| FOR LEFT_PAREN ForInit SEMI_COLON SEMI_COLON RIGHT_PAREN Statement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BasicForStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $7 << endl;
+}
+| FOR LEFT_PAREN SEMI_COLON Expression SEMI_COLON RIGHT_PAREN Statement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BasicForStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $7 << endl;
+}
+| FOR LEFT_PAREN SEMI_COLON SEMI_COLON ForUpdate RIGHT_PAREN Statement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BasicForStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $7 << endl;
+}
+| FOR LEFT_PAREN SEMI_COLON SEMI_COLON RIGHT_PAREN Statement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BasicForStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $6 << endl;
+}
+
+
+BasicForStatementNoShortIf : FOR LEFT_PAREN ForInit SEMI_COLON Expression SEMI_COLON ForUpdate RIGHT_PAREN StatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BasicForStatementNoShortIf_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $7 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $8);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $9 << endl;
+}
+| FOR LEFT_PAREN SEMI_COLON Expression SEMI_COLON ForUpdate RIGHT_PAREN StatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BasicForStatementNoShortIf_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $6 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $7);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $8 << endl;
+}
+| FOR LEFT_PAREN ForInit SEMI_COLON SEMI_COLON ForUpdate RIGHT_PAREN StatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BasicForStatementNoShortIf_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $6 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $7);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $8 << endl;
+}
+| FOR LEFT_PAREN ForInit SEMI_COLON Expression SEMI_COLON RIGHT_PAREN StatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BasicForStatementNoShortIf_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $7);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $8 << endl;
+}
+| FOR LEFT_PAREN ForInit SEMI_COLON SEMI_COLON RIGHT_PAREN StatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BasicForStatementNoShortIf_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $7 << endl;
+}
+| FOR LEFT_PAREN SEMI_COLON Expression SEMI_COLON RIGHT_PAREN StatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BasicForStatementNoShortIf_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $7 << endl;
+}
+| FOR LEFT_PAREN SEMI_COLON SEMI_COLON ForUpdate RIGHT_PAREN StatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BasicForStatementNoShortIf_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $7 << endl;
+}
+| FOR LEFT_PAREN SEMI_COLON SEMI_COLON RIGHT_PAREN StatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BasicForStatementNoShortIf_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $6 << endl;
+}
+
+
+ForInit : StatementExpressionList
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ForInit_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| LocalVariableDeclaration
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ForInit_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+ForUpdate : StatementExpressionList
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ForUpdate_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+StatementExpressionList : StatementExpressionList COMMA StatementExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementExpressionList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| StatementExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "StatementExpressionList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+EnhancedForStatement : FOR LEFT_PAREN FINAL Type VariableDeclaratorId COLON Expression RIGHT_PAREN Statement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnhancedForStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+  cout << $$ << " -> " << $5 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $7 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $8);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $9 << endl;
+}
+| FOR LEFT_PAREN Type VariableDeclaratorId COLON Expression RIGHT_PAREN Statement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnhancedForStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $6 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $7);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $8 << endl;
+}
+
+
+EnhancedForStatementNoShortIf : FOR LEFT_PAREN FINAL Type VariableDeclaratorId COLON Expression RIGHT_PAREN StatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnhancedForStatementNoShortIf_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+  cout << $$ << " -> " << $5 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $7 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $8);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $9 << endl;
+}
+| FOR LEFT_PAREN Type VariableDeclaratorId COLON Expression RIGHT_PAREN StatementNoShortIf
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EnhancedForStatementNoShortIf_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $6 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $7);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $8 << endl;
+}
+
+
+BreakStatement : BREAK IDENTIFIER SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BreakStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| BREAK SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "BreakStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ContinueStatement : CONTINUE IDENTIFIER SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ContinueStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| CONTINUE SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ContinueStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ReturnStatement : RETURN Expression SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ReturnStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| RETURN SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ReturnStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ThrowStatement : THROW Expression SEMI_COLON
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ThrowStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+SynchronizedStatement : SYNCHRONIZED LEFT_PAREN Expression RIGHT_PAREN Block
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "SynchronizedStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+}
+
+
+TryStatement : TRY Block Catches
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TryStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+}
+| TRY Block Catches Finally
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TryStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+}
+| TRY Block Finally
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TryStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+}
+| TryWithResourcesStatement
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TryStatement_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+Catches : Catches CatchClause
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Catches_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| CatchClause
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Catches_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+CatchClause : CATCH LEFT_PAREN CatchFormalParameter RIGHT_PAREN Block
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "CatchClause_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+}
+
+
+CatchFormalParameter : FINAL CatchType VariableDeclaratorId
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "CatchFormalParameter_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+}
+| CatchType VariableDeclaratorId
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "CatchFormalParameter_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+CatchType : CatchType LOR ClassType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "CatchType_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| ClassType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "CatchType_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+Finally : FINALLY Block
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Finally_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+TryWithResourcesStatement : TRY ResourcesSpecification Block Catches Finally
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TryWithResourcesStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+  cout << $$ << " -> " << $5 << endl;
+}
+| TRY ResourcesSpecification Block Finally
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TryWithResourcesStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+}
+| TRY ResourcesSpecification Block Catches
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TryWithResourcesStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+}
+| TRY ResourcesSpecification Block
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "TryWithResourcesStatement_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+ResourcesSpecification : LEFT_PAREN ResourceList SEMI_COLON RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ResourcesSpecification_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_PAREN ResourceList RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ResourcesSpecification_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ResourceList : ResourceList SEMI_COLON Resource
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ResourceList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| Resource
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ResourceList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+Resource : FINAL Type VariableDeclaratorId ASSIGN Expression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Resource_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+}
+| Type VariableDeclaratorId ASSIGN Expression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Resource_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+}
+
+
+
+Primary : PrimaryNoNewArray
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Primary_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ArrayCreationExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Primary_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+PrimaryNoNewArray : Literal
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PrimaryNoNewArray_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ClassLiteral
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PrimaryNoNewArray_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| THIS
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PrimaryNoNewArray_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| temporary0 THIS
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PrimaryNoNewArray_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_PAREN Expression RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PrimaryNoNewArray_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| ClassInstanceCreationExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PrimaryNoNewArray_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| FieldAccess
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PrimaryNoNewArray_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ArrayAccess
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PrimaryNoNewArray_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| MethodInvocation
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PrimaryNoNewArray_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| MethodReference
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PrimaryNoNewArray_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+ClassLiteral : ClassType Dims DOT CLASS
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassLiteral_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| PrimitiveType Dims DOT CLASS
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassLiteral_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| temporary0 CLASS
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassLiteral_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| PrimitiveType DOT CLASS
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassLiteral_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| VOID DOT CLASS
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassLiteral_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+Literal : INTEGER_LIT
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Literal_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%ld\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| FLOATING_LIT
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Literal_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%lf\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| BOOLEAN_LIT
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Literal_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%d\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| CHAR_LIT
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Literal_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%c\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| STRING_LIT
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Literal_%ld", counter);
+  counter++;
+  printf("label_%ld [label = %s]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| NULL_LIT
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Literal_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ClassInstanceCreationExpression : UnqualifiedClassInstanceCreationExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassInstanceCreationExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| temporary0 UnqualifiedClassInstanceCreationExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassInstanceCreationExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| Primary DOT UnqualifiedClassInstanceCreationExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassInstanceCreationExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+UnqualifiedClassInstanceCreationExpression : NEW ClassOrInterfaceTypeToInstantiate LEFT_PAREN ArgumentList RIGHT_PAREN ClassBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "UnqualifiedClassInstanceCreationExpression_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $6 << endl;
+}
+| NEW ClassOrInterfaceTypeToInstantiate LEFT_PAREN ArgumentList RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "UnqualifiedClassInstanceCreationExpression_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| NEW ClassOrInterfaceTypeToInstantiate LEFT_PAREN RIGHT_PAREN ClassBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "UnqualifiedClassInstanceCreationExpression_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+}
+| NEW ClassOrInterfaceTypeToInstantiate LEFT_PAREN RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "UnqualifiedClassInstanceCreationExpression_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ClassOrInterfaceTypeToInstantiate : TypeName
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ClassOrInterfaceTypeToInstantiate_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+
+FieldAccess : Primary DOT IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FieldAccess_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| SUPER DOT IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FieldAccess_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| temporary0 SUPER DOT IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "FieldAccess_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ArrayAccess : ClassType LEFT_SQUARE Expression RIGHT_SQUARE
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ArrayAccess_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| PrimaryNoNewArray LEFT_SQUARE Expression RIGHT_SQUARE
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ArrayAccess_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+MethodInvocation : IDENTIFIER LEFT_PAREN ArgumentList RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodInvocation_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| IDENTIFIER LEFT_PAREN RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodInvocation_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| temporary0 IDENTIFIER LEFT_PAREN ArgumentList RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodInvocation_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| temporary0 IDENTIFIER LEFT_PAREN RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodInvocation_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| Primary DOT IDENTIFIER LEFT_PAREN ArgumentList RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodInvocation_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| Primary DOT IDENTIFIER LEFT_PAREN RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodInvocation_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| SUPER DOT IDENTIFIER LEFT_PAREN ArgumentList RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodInvocation_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| SUPER DOT IDENTIFIER LEFT_PAREN RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodInvocation_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| temporary0 SUPER DOT IDENTIFIER LEFT_PAREN ArgumentList RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodInvocation_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $6 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $7);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| temporary0 SUPER DOT IDENTIFIER LEFT_PAREN RIGHT_PAREN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodInvocation_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $5);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $6);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ArgumentList : ArgumentList COMMA Expression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ArgumentList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| Expression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ArgumentList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+MethodReference : ReferenceType DOUBLE_COLON IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodReference_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| Primary DOUBLE_COLON IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodReference_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| SUPER DOUBLE_COLON IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodReference_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| temporary0 SUPER DOUBLE_COLON IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodReference_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| ReferenceType DOUBLE_COLON NEW
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MethodReference_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ArrayCreationExpression : NEW PrimitiveType DimExprs Dims
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ArrayCreationExpression_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+}
+| NEW PrimitiveType DimExprs
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ArrayCreationExpression_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+}
+| NEW ClassType DimExprs Dims
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ArrayCreationExpression_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+}
+| NEW ClassType DimExprs
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ArrayCreationExpression_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+}
+| NEW PrimitiveType Dims ArrayInitializer
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ArrayCreationExpression_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+}
+| NEW ClassType Dims ArrayInitializer
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ArrayCreationExpression_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+  cout << $$ << " -> " << $4 << endl;
+}
+
+
+DimExprs : DimExprs DimExpr
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "DimExprs_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+| DimExpr
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "DimExprs_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+DimExpr : LEFT_SQUARE Expression RIGHT_SQUARE
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "DimExpr_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+Expression : AssignmentExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Expression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| LambdaExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Expression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+LambdaExpression : LambdaParameters LambdaBody
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LambdaExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+LambdaParameters : IDENTIFIER POINTER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LambdaParameters_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_PAREN FormalParameterList RPOINTER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LambdaParameters_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_PAREN IDENTIFIER InferredFormalParameterList RPOINTER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LambdaParameters_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LEFT_PAREN IDENTIFIER RPOINTER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LambdaParameters_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+InferredFormalParameterList : InferredFormalParameterList COMMA IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InferredFormalParameterList_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| COMMA IDENTIFIER
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InferredFormalParameterList_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+LambdaBody : Expression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LambdaBody_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| Block
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LambdaBody_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+AssignmentExpression : ConditionalExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AssignmentExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| Assignment
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AssignmentExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+Assignment : LeftHandSide AssignmentOperator Expression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "Assignment_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  cout << $$ << " -> " << $2 << endl;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+LeftHandSide : ClassType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LeftHandSide_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| FieldAccess
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LeftHandSide_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ArrayAccess
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "LeftHandSide_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+AssignmentOperator : ASSIGN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AssignmentOperator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| MULASSN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AssignmentOperator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| DIVASSN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AssignmentOperator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| MODASSN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AssignmentOperator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| ADDASSN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AssignmentOperator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| SUBASSN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AssignmentOperator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| LSHIFTASSN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AssignmentOperator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| RSHIFTASSN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AssignmentOperator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| RRSHIFTASSN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AssignmentOperator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| ANDASSN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AssignmentOperator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| XORASSN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AssignmentOperator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+| ORASSN
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AssignmentOperator_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ConditionalExpression : ConditionalOrExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConditionalExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ConditionalOrExpression TERNARY Expression COLON ConditionalExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConditionalExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+}
+| ConditionalOrExpression TERNARY Expression COLON LambdaExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConditionalExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $4);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $5 << endl;
+}
+
+
+ConditionalOrExpression : ConditionalAndExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConditionalOrExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ConditionalOrExpression BOR ConditionalAndExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConditionalOrExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+ConditionalAndExpression : InclusiveOrExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConditionalAndExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ConditionalAndExpression BAND InclusiveOrExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConditionalAndExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+InclusiveOrExpression : ExclusiveOrExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InclusiveOrExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| InclusiveOrExpression LOR ExclusiveOrExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "InclusiveOrExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+ExclusiveOrExpression : AndExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ExclusiveOrExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ExclusiveOrExpression LXOR AndExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ExclusiveOrExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+AndExpression : EqualityExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AndExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| AndExpression LAND EqualityExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AndExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+EqualityExpression : RelationalExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EqualityExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| EqualityExpression EQUAL RelationalExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EqualityExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| EqualityExpression NOTEQ RelationalExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "EqualityExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+RelationalExpression : ShiftExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "RelationalExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| RelationalExpression LT ShiftExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "RelationalExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| RelationalExpression GT ShiftExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "RelationalExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| RelationalExpression LTE ShiftExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "RelationalExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| RelationalExpression GTE ShiftExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "RelationalExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| RelationalExpression INSTANCEOF ReferenceType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "RelationalExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+ShiftExpression : AdditiveExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ShiftExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ShiftExpression LSHIFT AdditiveExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ShiftExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| ShiftExpression RSHIFT AdditiveExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ShiftExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| ShiftExpression RRSHIFT AdditiveExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ShiftExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+AdditiveExpression : MultiplicativeExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AdditiveExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| AdditiveExpression ADD MultiplicativeExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AdditiveExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| AdditiveExpression SUB MultiplicativeExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "AdditiveExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+MultiplicativeExpression : UnaryExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MultiplicativeExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| MultiplicativeExpression MUL UnaryExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MultiplicativeExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| MultiplicativeExpression DIV UnaryExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MultiplicativeExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+| MultiplicativeExpression MOD UnaryExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "MultiplicativeExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $3 << endl;
+}
+
+
+UnaryExpression : PreIncrementExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "UnaryExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| PreDecrementExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "UnaryExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| ADD UnaryExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "UnaryExpression_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| SUB UnaryExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "UnaryExpression_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| UnaryExpressionNotPlusMinus
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "UnaryExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+PreIncrementExpression : INC UnaryExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PreIncrementExpression_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+PreDecrementExpression : DEC UnaryExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PreDecrementExpression_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+
+
+UnaryExpressionNotPlusMinus : PostfixExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "UnaryExpressionNotPlusMinus_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| NEG UnaryExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "UnaryExpressionNotPlusMinus_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| NOT UnaryExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "UnaryExpressionNotPlusMinus_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+}
+| LEFT_PAREN PrimitiveType RIGHT_PAREN UnaryExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "UnaryExpressionNotPlusMinus_%ld", counter);
+  counter++;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $1);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $2 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $3);
+  printf("%s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+  cout << $$ << " -> " << $4 << endl;
+}
+
+
+PostfixExpression : Primary
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PostfixExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| PostFixType
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PostfixExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| PostIncrementExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PostfixExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+| PostDecrementExpression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PostfixExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}
+
+
+PostIncrementExpression : PostfixExpression INC
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PostIncrementExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+PostDecrementExpression : PostfixExpression DEC
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "PostDecrementExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+  printf("label_%ld [label = \"%s\"]\n", label_counter, $2);
+  printf(" %s -> label_%ld\n", $$, label_counter);
+  label_counter++;
+}
+
+
+ConstantExpression : Expression
+{
+  $$ = (char*)malloc(64);
+  snprintf($$, 64, "ConstantExpression_%ld", counter);
+  counter++;
+  cout << $$ << " -> " << $1 << endl;
+}

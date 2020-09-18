@@ -1,0 +1,659 @@
+TypeName : IDENTIFIER
+| temporary0 IDENTIFIER
+
+Type : PrimitiveType
+| ReferenceType
+
+PrimitiveType : NumericType
+| BOOLEAN
+
+NumericType : BYTE
+| SHORT
+| INT
+| LONG
+| CHAR
+| FLOAT
+| DOUBLE
+
+ReferenceType : ClassType
+| ArrayType
+
+temporary0 : temporary0 IDENTIFIER DOT
+| IDENTIFIER DOT
+
+ClassType : IDENTIFIER
+| temporary0 IDENTIFIER
+
+PostFixType : IDENTIFIER
+| temporary0 IDENTIFIER
+
+ArrayType : PrimitiveType Dims
+| ClassType Dims
+
+Dims : LEFT_SQUARE RIGHT_SQUARE
+| Dims LEFT_SQUARE RIGHT_SQUARE
+
+TypeParameter : IDENTIFIER
+| IDENTIFIER TypeBound
+
+TypeBound : EXTENDS IDENTIFIER
+| EXTENDS ClassType AdditionalBound
+
+AdditionalBound : LAND ClassType
+| AdditionalBound LAND ClassType
+
+CompilationUnit : PackageDeclaration ImportDeclaration TypeDeclaration
+| PackageDeclaration ImportDeclaration
+| PackageDeclaration TypeDeclaration
+| PackageDeclaration
+| ImportDeclaration
+| TypeDeclaration
+| ImportDeclaration TypeDeclaration
+| %empty
+
+PackageDeclaration : PACKAGE TypeName SEMI_COLON
+
+ImportDeclaration : IMPORT TypeName SEMI_COLON
+| IMPORT temporary0 MUL SEMI_COLON
+| IMPORT STATIC temporary0 IDENTIFIER SEMI_COLON
+| IMPORT STATIC temporary0 MUL SEMI_COLON
+| ImportDeclaration IMPORT TypeName SEMI_COLON
+| ImportDeclaration IMPORT temporary0 MUL SEMI_COLON
+| ImportDeclaration IMPORT STATIC temporary0 IDENTIFIER SEMI_COLON
+| ImportDeclaration IMPORT STATIC temporary0 MUL SEMI_COLON
+
+TypeDeclaration : ClassDeclaration
+| InterfaceDeclaration
+| SEMI_COLON
+| TypeDeclaration ClassDeclaration
+| TypeDeclaration InterfaceDeclaration
+| TypeDeclaration SEMI_COLON
+
+ClassDeclaration : NormalClassDeclaration
+| EnumDeclaration
+
+NormalClassDeclaration : ClassModifier IDENTIFIER TypeParameters SuperClass Superinterfaces ClassBody
+| ClassModifier IDENTIFIER TypeParameters SuperClass ClassBody
+| ClassModifier IDENTIFIER TypeParameters Superinterfaces ClassBody
+| ClassModifier IDENTIFIER SuperClass Superinterfaces ClassBody
+| ClassModifier IDENTIFIER TypeParameters ClassBody
+| ClassModifier IDENTIFIER SuperClass ClassBody
+| ClassModifier IDENTIFIER Superinterfaces ClassBody
+| ClassModifier IDENTIFIER ClassBody
+
+ClassModifier : PUBLIC ClassModifier
+| PROTECTED ClassModifier
+| PRIVATE ClassModifier
+| ABSTRACT ClassModifier
+| STATIC ClassModifier
+| FINAL ClassModifier
+| STRICTFP ClassModifier
+| CLASS
+
+TypeParameters : LT TypeParameterList GT
+
+TypeParameterList : TypeParameterList COMMA TypeParameter
+| TypeParameter
+
+SuperClass : EXTENDS ClassType
+
+Superinterfaces : IMPLEMENTS InterfaceTypeList
+
+InterfaceTypeList : InterfaceTypeList COMMA ClassType
+| ClassType
+
+ClassBody : LEFT_CURLY ClassBodyDeclaration RIGHT_CURLY
+| LEFT_CURLY RIGHT_CURLY
+
+ClassBodyDeclaration : ClassMemberDeclaration
+| Block
+| STATIC Block
+| ConstructorDeclaration
+| ClassBodyDeclaration ClassMemberDeclaration
+| ClassBodyDeclaration Block
+| ClassBodyDeclaration STATIC Block
+| ClassBodyDeclaration ConstructorDeclaration
+
+ClassMemberDeclaration : FieldDeclaration
+| MethodDeclaration
+| ClassDeclaration
+| InterfaceDeclaration
+| SEMI_COLON
+
+FieldDeclaration : FieldModifier SEMI_COLON
+
+FieldModifier : PUBLIC FieldModifier
+| PROTECTED FieldModifier
+| PRIVATE FieldModifier
+| STATIC FieldModifier
+| FINAL FieldModifier
+| TRANSIENT FieldModifier
+| VOLATILE FieldModifier
+| Type VariableDeclaratorList
+
+VariableDeclaratorList : VariableDeclaratorList COMMA VariableDeclarator
+| VariableDeclarator
+
+VariableDeclarator : VariableDeclaratorId
+| VariableDeclaratorId ASSIGN VariableInitializer
+
+VariableDeclaratorId : IDENTIFIER
+| IDENTIFIER Dims
+
+VariableInitializer : Expression
+| ArrayInitializer
+
+MethodDeclaration : InterfaceMethodDeclaration
+| FINAL InterfaceMethodDeclaration
+
+MethodHeader : Type MethodDeclarator
+| Type MethodDeclarator THROWS
+| TypeParameters Type MethodDeclarator
+| TypeParameters Type MethodDeclarator THROWS
+| VOID MethodDeclarator
+| VOID MethodDeclarator THROWS
+| TypeParameters VOID MethodDeclarator
+| TypeParameters VOID MethodDeclarator THROWS
+
+MethodDeclarator : IDENTIFIER LEFT_PAREN FormalParameterList RIGHT_PAREN Dims
+| IDENTIFIER LEFT_PAREN RIGHT_PAREN Dims
+| IDENTIFIER LEFT_PAREN FormalParameterList RIGHT_PAREN
+| IDENTIFIER LEFT_PAREN RIGHT_PAREN
+
+FormalParameterList : ReceiverParameter
+| FormalParameters COMMA LastFormalParameter
+| LastFormalParameter
+
+FormalParameters : FormalParameters COMMA FormalParameter
+| FormalParameter
+| ReceiverParameter
+
+FormalParameter : FINAL Type VariableDeclaratorId
+| Type VariableDeclaratorId
+
+LastFormalParameter : FINAL Type TRIPLE_DOT VariableDeclaratorId
+| Type TRIPLE_DOT VariableDeclaratorId
+| FormalParameter
+
+ReceiverParameter : Type THIS
+| Type IDENTIFIER DOT THIS
+
+Throws : THROWS ExceptionTypeList
+
+ExceptionTypeList : ExceptionTypeList COMMA ClassType
+| ClassType
+
+MethodBody : Block
+| SEMI_COLON
+
+ConstructorDeclaration : ConstructorModifier Throws ConstructorBody
+| ConstructorModifier ConstructorBody
+
+ConstructorModifier : PUBLIC ConstructorModifier
+| PROTECTED ConstructorModifier
+| PRIVATE ConstructorModifier
+| ConstructorDeclarator
+
+ConstructorDeclarator : TypeParameters IDENTIFIER LEFT_PAREN FormalParameterList RIGHT_PAREN
+| TypeParameters IDENTIFIER LEFT_PAREN RIGHT_PAREN
+| IDENTIFIER LEFT_PAREN FormalParameterList RIGHT_PAREN
+| IDENTIFIER LEFT_PAREN RIGHT_PAREN
+
+ConstructorBody : LEFT_CURLY ExplicitConstructorInvocation BlockStatements RIGHT_CURLY
+| LEFT_CURLY BlockStatements RIGHT_CURLY
+| LEFT_CURLY ExplicitConstructorInvocation RIGHT_CURLY
+| LEFT_CURLY RIGHT_CURLY
+
+ExplicitConstructorInvocation : THIS LEFT_PAREN ArgumentList RIGHT_PAREN SEMI_COLON
+| THIS LEFT_PAREN RIGHT_PAREN SEMI_COLON
+| SUPER LEFT_PAREN ArgumentList RIGHT_PAREN SEMI_COLON
+| SUPER LEFT_PAREN RIGHT_PAREN SEMI_COLON
+| temporary0 SUPER LEFT_PAREN ArgumentList RIGHT_PAREN SEMI_COLON
+| temporary0 SUPER LEFT_PAREN RIGHT_PAREN SEMI_COLON
+| Primary DOT SUPER LEFT_PAREN ArgumentList RIGHT_PAREN SEMI_COLON
+| Primary DOT SUPER LEFT_PAREN RIGHT_PAREN SEMI_COLON
+
+ClassModifier_enum : PUBLIC ClassModifier_enum
+| PROTECTED ClassModifier_enum
+| PRIVATE ClassModifier_enum
+| ABSTRACT ClassModifier_enum
+| STATIC ClassModifier_enum
+| FINAL ClassModifier_enum
+| STRICTFP ClassModifier_enum
+| ENUM
+
+EnumDeclaration : ClassModifier_enum IDENTIFIER Superinterfaces EnumBody
+| ClassModifier_enum IDENTIFIER EnumBody
+
+EnumBody : LEFT_CURLY EnumConstantList COMMA EnumBodyDeclaration RIGHT_CURLY
+| LEFT_CURLY COMMA EnumBodyDeclaration RIGHT_CURLY
+| LEFT_CURLY EnumConstantList EnumBodyDeclaration RIGHT_CURLY
+| LEFT_CURLY EnumConstantList COMMA RIGHT_CURLY
+| LEFT_CURLY EnumConstantList RIGHT_CURLY
+| LEFT_CURLY COMMA RIGHT_CURLY
+| LEFT_CURLY EnumBodyDeclaration RIGHT_CURLY
+| LEFT_CURLY RIGHT_CURLY
+
+EnumConstantList : EnumConstantList COMMA EnumConstant
+| EnumConstant
+
+EnumConstant : IDENTIFIER
+| IDENTIFIER ClassBody
+| IDENTIFIER LEFT_PAREN RIGHT_PAREN
+| IDENTIFIER LEFT_PAREN ArgumentList RIGHT_PAREN
+| IDENTIFIER LEFT_PAREN RIGHT_PAREN ClassBody
+| IDENTIFIER LEFT_PAREN ArgumentList RIGHT_PAREN ClassBody
+
+EnumBodyDeclaration : SEMI_COLON ClassBodyDeclaration
+| SEMI_COLON
+
+InterfaceDeclaration : InterfaceModifier IDENTIFIER TypeParameters ExtendsInterfaces InterfaceBody
+| InterfaceModifier IDENTIFIER ExtendsInterfaces InterfaceBody
+| InterfaceModifier IDENTIFIER TypeParameters InterfaceBody
+| InterfaceModifier IDENTIFIER InterfaceBody
+
+InterfaceModifier : PUBLIC InterfaceModifier
+| PROTECTED InterfaceModifier
+| PRIVATE InterfaceModifier
+| ABSTRACT InterfaceModifier
+| STATIC InterfaceModifier
+| STRICTFP InterfaceModifier
+| INTERFACE
+
+ExtendsInterfaces : EXTENDS InterfaceTypeList
+
+InterfaceBody : LEFT_CURLY InterfaceMemberDeclaration RIGHT_CURLY
+| LEFT_CURLY RIGHT_CURLY
+
+InterfaceMemberDeclaration : ConstantDeclaration
+| InterfaceMethodDeclaration
+| ClassDeclaration
+| InterfaceDeclaration
+| SEMI_COLON
+| InterfaceMemberDeclaration ConstantDeclaration
+| InterfaceMemberDeclaration InterfaceMethodDeclaration
+| InterfaceMemberDeclaration ClassDeclaration
+| InterfaceMemberDeclaration InterfaceDeclaration
+| InterfaceMemberDeclaration SEMI_COLON
+
+ConstantDeclaration : ConstantModifier SEMI_COLON
+
+ConstantModifier : PUBLIC ConstantModifier
+| STATIC ConstantModifier
+| FINAL ConstantModifier
+| Type VariableDeclaratorList
+
+InterfaceMethodModifier : PUBLIC InterfaceMethodModifier
+| PROTECTED InterfaceMethodModifier
+| PRIVATE InterfaceMethodModifier
+| ABSTRACT InterfaceMethodModifier
+| STATIC InterfaceMethodModifier
+| STRICTFP InterfaceMethodModifier
+| MethodHeader
+
+InterfaceMethodDeclaration : InterfaceMethodModifier MethodBody
+
+ArrayInitializer : LEFT_CURLY VariableInitializerList COMMA RIGHT_CURLY
+| LEFT_CURLY COMMA RIGHT_CURLY
+| LEFT_CURLY VariableInitializerList RIGHT_CURLY
+| LEFT_CURLY RIGHT_CURLY
+
+VariableInitializerList : VariableInitializerList COMMA VariableInitializer
+| VariableInitializer
+
+Block : LEFT_CURLY BlockStatements RIGHT_CURLY
+| LEFT_CURLY RIGHT_CURLY
+
+BlockStatements : BlockStatements BlockStatement
+| BlockStatement
+
+BlockStatement : LocalVariableDeclarationStatement
+| ClassDeclaration
+| Statement
+
+LocalVariableDeclarationStatement : LocalVariableDeclaration SEMI_COLON
+
+LocalVariableDeclaration : FINAL Type VariableDeclaratorList
+| Type VariableDeclaratorList
+
+Statement : StatementWithoutTrailingSubstatement
+| LabeledStatement
+| IfThenStatement
+| IfThenElseStatement
+| WhileStatement
+| ForStatement
+
+StatementNoShortIf : StatementWithoutTrailingSubstatement
+| LabeledStatementNoShortIf
+| IfThenElseStatementNoShortIf
+| WhileStatementNoShortIf
+| ForStatementNoShortIf
+
+StatementWithoutTrailingSubstatement : Block
+| SEMI_COLON
+| ExpressionStatement
+| AssertStatement
+| SwitchStatement
+| DoStatement
+| BreakStatement
+| ContinueStatement
+| ReturnStatement
+| SynchronizedStatement
+| ThrowStatement
+| TryStatement
+
+LabeledStatement : IDENTIFIER COLON Statement
+
+LabeledStatementNoShortIf : IDENTIFIER COLON StatementNoShortIf
+
+ExpressionStatement : StatementExpression SEMI_COLON
+
+
+StatementExpression: Assignment
+| PreIncrementExpression
+| PreDecrementExpression
+| PostIncrementExpression
+| PostDecrementExpression
+| MethodInvocation
+| ClassInstanceCreationExpression
+
+IfThenStatement : IF LEFT_PAREN Expression RIGHT_PAREN Statement
+
+IfThenElseStatement : IF LEFT_PAREN Expression RIGHT_PAREN StatementNoShortIf ELSE Statement
+
+IfThenElseStatementNoShortIf : IF LEFT_PAREN Expression RIGHT_PAREN StatementNoShortIf ELSE StatementNoShortIf
+
+AssertStatement : ASSERT Expression SEMI_COLON
+| ASSERT Expression COLON Expression SEMI_COLON
+
+SwitchStatement : SWITCH LEFT_PAREN Expression RIGHT_PAREN SwitchBlock
+
+SwitchBlock : LEFT_CURLY SwitchBlockStatementGroup SwitchLabels RIGHT_CURLY
+| LEFT_CURLY SwitchLabels RIGHT_CURLY
+| LEFT_CURLY SwitchBlockStatementGroup RIGHT_CURLY
+| LEFT_CURLY RIGHT_CURLY
+
+SwitchBlockStatementGroup : SwitchBlockStatementGroup SwitchLabels BlockStatements
+| SwitchLabels BlockStatements
+
+SwitchLabels : SwitchLabels SwitchLabel
+| SwitchLabel
+
+SwitchLabel : CASE ConstantExpression COLON
+| DEFAULT COLON
+
+WhileStatement : WHILE LEFT_PAREN Expression RIGHT_PAREN Statement
+
+WhileStatementNoShortIf : WHILE LEFT_PAREN Expression RIGHT_PAREN StatementNoShortIf
+
+DoStatement : DO Statement WHILE LEFT_PAREN Expression RIGHT_PAREN SEMI_COLON
+
+ForStatement : BasicForStatement
+| EnhancedForStatement
+
+ForStatementNoShortIf : BasicForStatementNoShortIf
+| EnhancedForStatementNoShortIf
+
+BasicForStatement : FOR LEFT_PAREN ForInit SEMI_COLON Expression SEMI_COLON ForUpdate RIGHT_PAREN Statement
+| FOR LEFT_PAREN SEMI_COLON Expression SEMI_COLON ForUpdate RIGHT_PAREN Statement
+| FOR LEFT_PAREN ForInit SEMI_COLON SEMI_COLON ForUpdate RIGHT_PAREN Statement
+| FOR LEFT_PAREN ForInit SEMI_COLON Expression SEMI_COLON RIGHT_PAREN Statement
+| FOR LEFT_PAREN ForInit SEMI_COLON SEMI_COLON RIGHT_PAREN Statement
+| FOR LEFT_PAREN SEMI_COLON Expression SEMI_COLON RIGHT_PAREN Statement
+| FOR LEFT_PAREN SEMI_COLON SEMI_COLON ForUpdate RIGHT_PAREN Statement
+| FOR LEFT_PAREN SEMI_COLON SEMI_COLON RIGHT_PAREN Statement
+
+BasicForStatementNoShortIf : FOR LEFT_PAREN ForInit SEMI_COLON Expression SEMI_COLON ForUpdate RIGHT_PAREN StatementNoShortIf
+| FOR LEFT_PAREN SEMI_COLON Expression SEMI_COLON ForUpdate RIGHT_PAREN StatementNoShortIf
+| FOR LEFT_PAREN ForInit SEMI_COLON SEMI_COLON ForUpdate RIGHT_PAREN StatementNoShortIf
+| FOR LEFT_PAREN ForInit SEMI_COLON Expression SEMI_COLON RIGHT_PAREN StatementNoShortIf
+| FOR LEFT_PAREN ForInit SEMI_COLON SEMI_COLON RIGHT_PAREN StatementNoShortIf
+| FOR LEFT_PAREN SEMI_COLON Expression SEMI_COLON RIGHT_PAREN StatementNoShortIf
+| FOR LEFT_PAREN SEMI_COLON SEMI_COLON ForUpdate RIGHT_PAREN StatementNoShortIf
+| FOR LEFT_PAREN SEMI_COLON SEMI_COLON RIGHT_PAREN StatementNoShortIf
+
+ForInit : StatementExpressionList
+| LocalVariableDeclaration
+
+ForUpdate : StatementExpressionList
+
+StatementExpressionList : StatementExpressionList COMMA StatementExpression
+| StatementExpression
+
+EnhancedForStatement : FOR LEFT_PAREN FINAL Type VariableDeclaratorId COLON Expression RIGHT_PAREN Statement
+| FOR LEFT_PAREN Type VariableDeclaratorId COLON Expression RIGHT_PAREN Statement
+
+EnhancedForStatementNoShortIf : FOR LEFT_PAREN FINAL Type VariableDeclaratorId COLON Expression RIGHT_PAREN StatementNoShortIf
+| FOR LEFT_PAREN Type VariableDeclaratorId COLON Expression RIGHT_PAREN StatementNoShortIf
+
+BreakStatement : BREAK IDENTIFIER SEMI_COLON
+| BREAK SEMI_COLON
+
+ContinueStatement : CONTINUE IDENTIFIER SEMI_COLON
+| CONTINUE SEMI_COLON
+
+ReturnStatement : RETURN Expression SEMI_COLON
+| RETURN SEMI_COLON
+
+ThrowStatement : THROW Expression SEMI_COLON
+
+SynchronizedStatement : SYNCHRONIZED LEFT_PAREN Expression RIGHT_PAREN Block
+
+TryStatement : TRY Block Catches
+| TRY Block Catches Finally
+| TRY Block Finally
+| TryWithResourcesStatement
+
+Catches : Catches CatchClause
+| CatchClause
+
+CatchClause : CATCH LEFT_PAREN CatchFormalParameter RIGHT_PAREN Block
+
+CatchFormalParameter : FINAL CatchType VariableDeclaratorId
+| CatchType VariableDeclaratorId
+
+CatchType : CatchType LOR ClassType
+| ClassType
+
+Finally : FINALLY Block
+
+TryWithResourcesStatement : TRY ResourcesSpecification Block Catches Finally
+| TRY ResourcesSpecification Block Finally
+| TRY ResourcesSpecification Block Catches
+| TRY ResourcesSpecification Block
+
+ResourcesSpecification : LEFT_PAREN ResourceList SEMI_COLON RIGHT_PAREN
+| LEFT_PAREN ResourceList RIGHT_PAREN
+
+ResourceList : ResourceList SEMI_COLON Resource
+| Resource
+
+Resource : FINAL Type VariableDeclaratorId ASSIGN Expression
+| Type VariableDeclaratorId ASSIGN Expression
+
+
+Primary : PrimaryNoNewArray
+| ArrayCreationExpression
+
+PrimaryNoNewArray : Literal
+| ClassLiteral
+| THIS
+| temporary0 THIS
+| LEFT_PAREN Expression RIGHT_PAREN
+| ClassInstanceCreationExpression
+| FieldAccess
+| ArrayAccess
+| MethodInvocation
+| MethodReference
+
+ClassLiteral : ClassType Dims DOT CLASS
+| PrimitiveType Dims DOT CLASS
+| temporary0 CLASS
+| PrimitiveType DOT CLASS
+| VOID DOT CLASS
+
+Literal : INTEGER_LIT
+| FLOATING_LIT
+| BOOLEAN_LIT
+| CHAR_LIT
+| STRING_LIT
+| NULL_LIT
+
+ClassInstanceCreationExpression : UnqualifiedClassInstanceCreationExpression
+| temporary0 UnqualifiedClassInstanceCreationExpression
+| Primary DOT UnqualifiedClassInstanceCreationExpression
+
+UnqualifiedClassInstanceCreationExpression : NEW ClassOrInterfaceTypeToInstantiate LEFT_PAREN ArgumentList RIGHT_PAREN ClassBody
+| NEW ClassOrInterfaceTypeToInstantiate LEFT_PAREN ArgumentList RIGHT_PAREN
+| NEW ClassOrInterfaceTypeToInstantiate LEFT_PAREN RIGHT_PAREN ClassBody
+| NEW ClassOrInterfaceTypeToInstantiate LEFT_PAREN RIGHT_PAREN
+
+ClassOrInterfaceTypeToInstantiate : TypeName
+
+
+FieldAccess: Primary DOT IDENTIFIER
+| SUPER DOT IDENTIFIER
+| temporary0 SUPER DOT IDENTIFIER
+
+ArrayAccess: ClassType LEFT_SQUARE Expression RIGHT_SQUARE
+| PrimaryNoNewArray LEFT_SQUARE Expression RIGHT_SQUARE
+
+MethodInvocation : IDENTIFIER LEFT_PAREN ArgumentList RIGHT_PAREN
+| IDENTIFIER LEFT_PAREN RIGHT_PAREN
+| temporary0 IDENTIFIER LEFT_PAREN ArgumentList RIGHT_PAREN
+| temporary0 IDENTIFIER LEFT_PAREN RIGHT_PAREN
+| Primary DOT IDENTIFIER LEFT_PAREN ArgumentList RIGHT_PAREN
+| Primary DOT IDENTIFIER LEFT_PAREN RIGHT_PAREN
+| SUPER DOT IDENTIFIER LEFT_PAREN ArgumentList RIGHT_PAREN
+| SUPER DOT IDENTIFIER LEFT_PAREN RIGHT_PAREN
+| temporary0 SUPER DOT IDENTIFIER LEFT_PAREN ArgumentList RIGHT_PAREN
+| temporary0 SUPER DOT IDENTIFIER LEFT_PAREN RIGHT_PAREN
+
+ArgumentList : ArgumentList COMMA Expression
+| Expression
+
+MethodReference : ReferenceType DOUBLE_COLON IDENTIFIER
+| Primary DOUBLE_COLON IDENTIFIER
+| SUPER DOUBLE_COLON IDENTIFIER
+| temporary0 SUPER DOUBLE_COLON IDENTIFIER
+| ReferenceType DOUBLE_COLON NEW
+
+ArrayCreationExpression: NEW PrimitiveType DimExprs Dims
+| NEW PrimitiveType DimExprs
+| NEW ClassType DimExprs Dims
+| NEW ClassType DimExprs
+| NEW PrimitiveType Dims ArrayInitializer
+| NEW ClassType Dims ArrayInitializer
+
+DimExprs : DimExprs DimExpr
+| DimExpr
+
+DimExpr : LEFT_SQUARE Expression RIGHT_SQUARE
+
+Expression : AssignmentExpression
+| LambdaExpression
+
+LambdaExpression : LambdaParameters LambdaBody
+
+LambdaParameters : IDENTIFIER POINTER
+| LEFT_PAREN FormalParameterList RPOINTER
+| LEFT_PAREN IDENTIFIER InferredFormalParameterList RPOINTER
+| LEFT_PAREN IDENTIFIER RPOINTER
+
+InferredFormalParameterList : InferredFormalParameterList COMMA IDENTIFIER
+| COMMA IDENTIFIER
+
+LambdaBody : Expression
+| Block
+
+AssignmentExpression : ConditionalExpression
+| Assignment
+
+Assignment : LeftHandSide AssignmentOperator Expression
+
+LeftHandSide: ClassType
+| FieldAccess
+| ArrayAccess
+
+AssignmentOperator : ASSIGN
+| MULASSN
+| DIVASSN
+| MODASSN
+| ADDASSN
+| SUBASSN
+| LSHIFTASSN
+| RSHIFTASSN
+| RRSHIFTASSN
+| ANDASSN
+| XORASSN
+| ORASSN
+
+ConditionalExpression : ConditionalOrExpression
+| ConditionalOrExpression TERNARY Expression COLON ConditionalExpression
+| ConditionalOrExpression TERNARY Expression COLON LambdaExpression
+
+ConditionalOrExpression : ConditionalAndExpression
+| ConditionalOrExpression BOR ConditionalAndExpression
+
+ConditionalAndExpression : InclusiveOrExpression
+| ConditionalAndExpression BAND InclusiveOrExpression
+
+InclusiveOrExpression : ExclusiveOrExpression
+| InclusiveOrExpression LOR ExclusiveOrExpression
+
+ExclusiveOrExpression : AndExpression
+| ExclusiveOrExpression LXOR AndExpression
+
+AndExpression : EqualityExpression
+| AndExpression LAND EqualityExpression
+
+EqualityExpression : RelationalExpression
+| EqualityExpression EQUAL RelationalExpression
+| EqualityExpression NOTEQ RelationalExpression
+
+RelationalExpression : ShiftExpression
+| RelationalExpression LT ShiftExpression
+| RelationalExpression GT ShiftExpression
+| RelationalExpression LTE ShiftExpression
+| RelationalExpression GTE ShiftExpression
+| RelationalExpression INSTANCEOF ReferenceType
+
+ShiftExpression : AdditiveExpression
+| ShiftExpression LSHIFT AdditiveExpression
+| ShiftExpression RSHIFT AdditiveExpression
+| ShiftExpression RRSHIFT AdditiveExpression
+
+AdditiveExpression : MultiplicativeExpression
+| AdditiveExpression ADD MultiplicativeExpression
+| AdditiveExpression SUB MultiplicativeExpression
+
+MultiplicativeExpression: UnaryExpression
+| MultiplicativeExpression MUL UnaryExpression
+| MultiplicativeExpression DIV UnaryExpression
+| MultiplicativeExpression MOD UnaryExpression
+
+UnaryExpression : PreIncrementExpression
+| PreDecrementExpression
+| ADD UnaryExpression
+| SUB UnaryExpression
+| UnaryExpressionNotPlusMinus
+
+PreIncrementExpression : INC UnaryExpression
+
+PreDecrementExpression : DEC UnaryExpression
+
+UnaryExpressionNotPlusMinus : PostfixExpression
+| NEG UnaryExpression
+| NOT UnaryExpression
+| LEFT_PAREN PrimitiveType RIGHT_PAREN UnaryExpression
+
+PostfixExpression : Primary
+| PostFixType
+| PostIncrementExpression
+| PostDecrementExpression
+
+PostIncrementExpression : PostfixExpression INC
+
+PostDecrementExpression : PostfixExpression DEC
+
+ConstantExpression : Expression
